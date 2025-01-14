@@ -524,7 +524,8 @@ def main():
     print("Starting 3D EKF processing...")
     
     # 1. Configuration
-    DATA_PATH = r"\\wsl.localhost\Ubuntu\home\anujpatel1761\sensor_fusion\data\2011_09_26_drive_0001_sync\2011_09_26\2011_09_26_drive_0001_sync\oxts\data"
+    DATA_PATH = r"C:\Users\anujp\Desktop\sensor_fusion\data\2011_09_26_drive_0001_sync\2011_09_26\2011_09_26_drive_0001_sync\oxts\data"
+
     
     # 2. Load timestamps
     print("Loading timestamps...")

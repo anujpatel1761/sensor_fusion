@@ -1,107 +1,144 @@
-# 3D Extended Kalman Filter for GPS/IMU Sensor Fusion
+Let me help you create a more detailed and easily understandable README.md. I'll organize it to highlight the key results first and make it more visually appealing.
 
-## Overview
-This project implements a complete 3D Extended Kalman Filter (EKF) for sensor fusion of GPS and IMU data using the KITTI dataset. The implementation provides accurate state estimation including position, orientation, and velocity by fusing data from multiple sensors.
+```markdown
+# 3D GPS/IMU Sensor Fusion using Extended Kalman Filter
 
-## Features
-- Full 3D state estimation (position, orientation, velocity)
-- Real-time processing of IMU measurements (accelerometer and gyroscope)
-- GPS position updates with accuracy-based measurement noise
-- Adaptive process noise based on motion dynamics
-- Comprehensive visualization and analysis tools
-- Proper timestamp handling from dataset
-- Frame transformation handling (body to world frame conversions)
+## Quick Results 🎯
+- **Position Accuracy**: 0.118 meters RMSE
+- **Orientation Accuracy**: 0.004 radians RMSE
+- **Velocity Accuracy**: 3.654 m/s RMSE
+- **Dataset**: KITTI Vision Benchmark Suite
+- **Processing Time**: Real-time capable (108 frames processed)
 
-## Results
-
-### 1. Performance Visualization
 ![Comprehensive Results](3d_ekf_results.png)
-The figure shows nine subplots demonstrating the performance of the EKF:
-- Top row: 3D trajectory, orientation components, and velocity components
-- Middle row: Position error, orientation error, and velocity error
-- Bottom row: GPS accuracy, IMU measurements, and filter innovation
 
-### 2. EKF Architecture
-![EKF Architecture](EKF.png)  
-This diagram illustrates the core EKF components:
-- State vector maintenance
-- Prediction step using IMU data
-- Update step using GPS measurements
-- Frame transformations and gravity compensation
+## Project Overview 🚀
+This project implements a high-precision 3D Extended Kalman Filter (EKF) that fuses GPS and IMU data for accurate vehicle state estimation. The system provides real-time tracking of:
+- 3D Position (x, y, z)
+- 3D Orientation (roll, pitch, yaw)
+- 3D Velocity (vx, vy, vz)
 
-### 3. System Architecture
-![System Architecture](workflow.png)
-The complete system pipeline including:
-- Data loading from KITTI dataset
-- Preprocessing steps
-- EKF processing
-- Results analysis and visualization
+## Key Features ⭐
+1. **Sensor Fusion**
+   - GPS position measurements with accuracy-based noise modeling
+   - IMU data (accelerometer + gyroscope) integration
+   - Adaptive measurement noise handling
 
-## Performance Metrics
-The implementation achieves the following RMSE values:
-- Position: 0.118 meters
-- Orientation: 0.004 radians
-- Velocity: 3.654 m/s
+2. **Advanced Processing**
+   - Real-time capable implementation
+   - Automatic gravity compensation
+   - Body-to-world frame transformations
+   - Timestamp synchronization
 
-## Dependencies
-- Python 3.x
-- NumPy
-- Matplotlib
-- datetime
+3. **Robust Error Handling**
+   - GPS accuracy thresholding
+   - Numerical stability safeguards
+   - Outlier detection and rejection
 
-## Installation
-```bash
-git clone https://github.com/yourusername/3d-ekf-sensor-fusion.git
-cd 3d-ekf-sensor-fusion
-pip install -r requirements.txt
+## Results Visualization 📊
+The results plot (3d_ekf_results.png) shows 9 subplots:
+
+**Top Row**:
+- 3D trajectory (estimated vs ground truth)
+- Orientation components over time
+- Velocity components over time
+
+**Middle Row**:
+- Position error analysis
+- Orientation error analysis
+- Velocity error analysis
+
+**Bottom Row**:
+- GPS accuracy metrics
+- Raw IMU measurements
+- Filter innovation analysis
+
+## Sample Output 📝
+```python
+Starting 3D EKF processing...
+Loading timestamps...
+Successfully loaded 108 timestamps
+Loading OXTS data...
+Converting GPS coordinates to local frame...
+Initializing EKF...
+Running EKF...
+Processing frame 100/108
+Computing performance metrics...
+
+RMSE Values:
+Position RMSE: 0.118 m
+Orientation RMSE: 0.004 rad
+Velocity RMSE: 3.654 m/s
 ```
 
-## Usage
-1. Download the KITTI dataset and update the DATA_PATH in main.py
-2. Run the main script:
-```bash
-python main.py
+## Implementation Details 🔧
+### State Vector (9-dimensional)
+```python
+X = [x, y, z,           # Position
+     roll, pitch, yaw,  # Orientation
+     vx, vy, vz]        # Velocity
 ```
-3. Results will be saved as '3d_ekf_results.png'
 
-## Code Structure
-- `main.py`: Main script to run the EKF algorithm
-- `OXTSData`: Class for parsing KITTI OXTS data format
-- `ExtendedKalmanFilter3D`: Core EKF implementation
-- Supporting functions:
-  - `latlon_to_xyz`: Coordinate conversion
-  - `plot_comprehensive_results`: Visualization
-  - `compute_rmse_metrics`: Performance evaluation
-
-## Implementation Details
-
-### State Vector
-The EKF maintains a 9-dimensional state vector:
-- Position (x, y, z)
-- Orientation (roll, pitch, yaw)
-- Velocity (vx, vy, vz)
-
-### Key Features
+### Core Components
 1. **GPS Integration**
-   - Position measurements with accuracy metrics
+   - Position updates with accuracy weighting
    - Adaptive measurement noise covariance
+   - Local coordinate frame conversion
 
 2. **IMU Processing**
-   - Gravity compensation
-   - Proper frame transformations
-   - Gyroscope integration
+   - Accelerometer gravity compensation
+   - Gyroscope angular rate integration
+   - Body-to-world frame transformations
 
-3. **Error Handling**
-   - Robust timestamp parsing
-   - GPS accuracy thresholding
-   - Numerical stability considerations
+### Project Structure
+```
+sensor_fusion/
+├── ekf.py              # Main EKF implementation
+├── ekf_example.py      # Usage example
+├── 3d_ekf_results.png  # Results visualization
+└── data/               # KITTI dataset (not included)
+```
 
-## Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Getting Started 🚀
+1. **Setup**
+   ```bash
+   git clone https://github.com/anujpatel1761/sensor_fusion.git
+   cd sensor_fusion
+   ```
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+2. **Dependencies**
+   ```bash
+   conda create -n sensor_fusion python=3.8
+   conda activate sensor_fusion
+   pip install numpy matplotlib datetime
+   ```
 
-## Acknowledgments
-- KITTI Dataset for providing the raw sensor data
-- Extended Kalman Filter implementation based on probabilistic robotics principles
+3. **Run**
+   ```bash
+   python ekf.py
+   ```
+
+## Data Requirements 📊
+- KITTI Vision Benchmark Suite
+- Required sensors:
+  - GPS (position data)
+  - IMU (accelerometer + gyroscope)
+  - Timestamps for synchronization
+
+## Future Improvements 🔄
+- [ ] ROS integration
+- [ ] Real-time visualization
+- [ ] Multi-threading support
+- [ ] Additional sensor support
+
+## References 📚
+1. KITTI Vision Benchmark Suite
+2. Probabilistic Robotics (Thrun et al.)
+3. Extended Kalman Filter theory
+
+## License 📜
+MIT License
+
+## Contact 📫
+- GitHub: [@anujpatel1761](https://github.com/anujpatel1761)
+```

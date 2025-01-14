@@ -1,6 +1,3 @@
-Let me help you create a more detailed and easily understandable README.md. I'll organize it to highlight the key results first and make it more visually appealing.
-
-```markdown
 # 3D GPS/IMU Sensor Fusion using Extended Kalman Filter
 
 ## Quick Results 🎯

@@ -15,14 +15,14 @@ This project implements a complete 3D Extended Kalman Filter (EKF) for sensor fu
 ## Results
 
 ### 1. Performance Visualization
-![Comprehensive Results](images/3d_ekf_results.png)
+![Comprehensive Results](3d_ekf_results.png)
 The figure shows nine subplots demonstrating the performance of the EKF:
 - Top row: 3D trajectory, orientation components, and velocity components
 - Middle row: Position error, orientation error, and velocity error
 - Bottom row: GPS accuracy, IMU measurements, and filter innovation
 
 ### 2. EKF Architecture
-![EKF Architecture](images/ekf_architecture.png)
+![EKF Architecture](EKF.png)  
 This diagram illustrates the core EKF components:
 - State vector maintenance
 - Prediction step using IMU data
@@ -30,7 +30,7 @@ This diagram illustrates the core EKF components:
 - Frame transformations and gravity compensation
 
 ### 3. System Architecture
-![System Architecture](images/system_architecture.png)
+![System Architecture](workflow.png)
 The complete system pipeline including:
 - Data loading from KITTI dataset
 - Preprocessing steps
